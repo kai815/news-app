@@ -21,5 +21,8 @@ module.exports = {
   ],
   rules: {
     'react/jsx-filename-extension': [1, { extensions: ['.tsx', '.ts'] }],
+    'react/style-prop-object': [1,
+      { allow: ['StatusBar'] },
+    ],
   },
 };
