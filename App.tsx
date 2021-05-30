@@ -1,6 +1,6 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Image } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -14,6 +14,15 @@ const styles = StyleSheet.create({
     width: '100%',
     borderColor: 'gray',
     borderWidth: 1,
+    flexDirection: 'row',
+  },
+  leftContainer: {
+    backgroundColor: 'red',
+    width: 100,
+  },
+  rightContainer: {
+    backgroundColor: 'blue',
+    flex: 1,
   },
 });
 
@@ -22,7 +31,24 @@ export default function App() {
     <View style={styles.container}>
       <View
         style={styles.itemContainer}
-      />
+      >
+        <View
+          style={styles.leftContainer}
+        >
+          <Image
+            style={{
+              width: 100,
+              height: 100,
+            }}
+            source={{
+              uri: 'https://picsum.photos/seed/picsum/200/300',
+            }}
+          />
+        </View>
+        <View
+          style={styles.rightContainer}
+        />
+      </View>
     </View>
   );
 }
