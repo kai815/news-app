@@ -1,6 +1,8 @@
 import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View, Image } from 'react-native';
+// import { StatusBar } from 'expo-status-bar';
+import {
+  StyleSheet, View, Text, Image,
+} from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -17,12 +19,20 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   leftContainer: {
-    backgroundColor: 'red',
     width: 100,
   },
   rightContainer: {
-    backgroundColor: 'blue',
     flex: 1,
+    flexDirection: 'column',
+    padding: 10,
+    justifyContent: 'space-between',
+  },
+  text: {
+    fontSize: 16,
+  },
+  subText: {
+    fontSize: 12,
+    color: 'gray',
   },
 });
 
@@ -47,7 +57,15 @@ export default function App() {
         </View>
         <View
           style={styles.rightContainer}
-        />
+        >
+          <Text numberOfLines={3} style={styles.text}>
+            In the following example,
+            the nested title and body text will inherit the fontFamily from styles.baseText,
+            but the title provides its own additional styles.
+            The title and body will stack on top of each other on account of the literal newlines:
+          </Text>
+          <Text style={styles.subText}>React News</Text>
+        </View>
       </View>
     </View>
   );
