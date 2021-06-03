@@ -30,7 +30,13 @@ const styles = StyleSheet.create({
   },
 });
 
-const ListItem = () => (
+type ListItemProps = {
+  imageUrl:string
+  title?:string
+  author?: string
+}
+
+const ListItem = ({imageUrl, title, author}:ListItemProps) => (
   <View
     style={styles.itemContainer}
   >
@@ -43,7 +49,7 @@ const ListItem = () => (
           height: 100,
         }}
         source={{
-          uri: 'https://picsum.photos/seed/picsum/200/300',
+          uri: imageUrl,
         }}
       />
     </View>
@@ -51,12 +57,9 @@ const ListItem = () => (
       style={styles.rightContainer}
     >
       <Text numberOfLines={3} style={styles.text}>
-        In the following example,
-        the nested title and body text will inherit the fontFamily from styles.baseText,
-        but the title provides its own additional styles.
-        The title and body will stack on top of each other on account of the literal newlines:
+        {title}
       </Text>
-      <Text style={styles.subText}>React News</Text>
+      <Text style={styles.subText}>{author}</Text>
     </View>
   </View>
 );
