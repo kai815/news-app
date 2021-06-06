@@ -1,13 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 // import { StatusBar } from 'expo-status-bar';
 import {
-  StyleSheet, 
-  View,
+  StyleSheet,
   FlatList,
-  SafeAreaView
+  SafeAreaView,
 } from 'react-native';
 import ListItem from './components/ListItem';
-import articles from "./dummies/articles.json"
+import dummyArticles from './dummies/articles.json';
 
 const styles = StyleSheet.create({
   container: {
@@ -16,19 +15,33 @@ const styles = StyleSheet.create({
   },
 });
 
+type Article = {
+  author: string,
+  title: string,
+  urlToImage: string,
+  publishedAt: string
+}
+
 export default function App() {
+  const [articles, setArticles] = useState<Article[] | []>([]);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setArticles(dummyArticles);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
         data={articles}
-        renderItem={({item}) => (
-          <ListItem 
+        renderItem={({ item }) => (
+          <ListItem
             imageUrl={item.urlToImage}
             title={item.title}
             author={item.author}
           />
         )}
-        keyExtractor={(_item,index)=> index.toString()}
+        keyExtractor={(_item, index) => index.toString()}
       />
     </SafeAreaView>
   );

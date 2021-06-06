@@ -31,12 +31,12 @@ const styles = StyleSheet.create({
 });
 
 type ListItemProps = {
-  imageUrl:string
-  title?:string
-  author?: string
+  imageUrl:string,
+  title:string,
+  author: string,
 }
 
-const ListItem = ({imageUrl, title, author}:ListItemProps) => (
+const ListItem = ({ imageUrl, title, author }:ListItemProps) => (
   <View
     style={styles.itemContainer}
   >
