@@ -5,6 +5,7 @@ import {
   FlatList,
   SafeAreaView,
 } from 'react-native';
+import { NEWS_API_KEY } from '@env';
 import ListItem from './components/ListItem';
 import dummyArticles from './dummies/articles.json';
 
@@ -25,6 +26,7 @@ type Article = {
 export default function App() {
   const [articles, setArticles] = useState<Article[] | []>([]);
   useEffect(() => {
+    alert(NEWS_API_KEY);
     const timer = setTimeout(() => {
       setArticles(dummyArticles);
     }, 2000);
