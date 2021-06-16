@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
 });
 
 type ListItemProps = {
-  imageUrl:string,
+  imageUrl:string | null,
   title:string,
   author: string,
 }
@@ -43,15 +43,17 @@ const ListItem = ({ imageUrl, title, author }:ListItemProps) => (
     <View
       style={styles.leftContainer}
     >
-      <Image
-        style={{
-          width: 100,
-          height: 100,
-        }}
-        source={{
-          uri: imageUrl,
-        }}
-      />
+      {!!imageUrl && (
+        <Image
+          style={{
+            width: 100,
+            height: 100,
+          }}
+          source={{
+            uri: imageUrl,
+          }}
+        />
+      )}
     </View>
     <View
       style={styles.rightContainer}

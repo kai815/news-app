@@ -5,9 +5,9 @@ import {
   FlatList,
   SafeAreaView,
 } from 'react-native';
-import { NEWS_API_KEY } from '@env';
+import { NEWS_API_KEY, BASE_URL } from '@env';
+import axios from 'axios';
 import ListItem from './components/ListItem';
-import dummyArticles from './dummies/articles.json';
 
 const styles = StyleSheet.create({
   container: {
@@ -23,15 +23,24 @@ type Article = {
   publishedAt: string
 }
 
+const URL = `${BASE_URL}?country=jp&category=business&apiKey=${NEWS_API_KEY}`;
+
 export default function App() {
   const [articles, setArticles] = useState<Article[] | []>([]);
+
+  const fetchArticles = async () => {
+    try {
+      const response = await axios.get(URL);
+      setArticles(response.data.articles);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
-    alert(NEWS_API_KEY);
-    const timer = setTimeout(() => {
-      setArticles(dummyArticles);
-    }, 2000);
-    return () => clearTimeout(timer);
+    fetchArticles();
   }, []);
+
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
