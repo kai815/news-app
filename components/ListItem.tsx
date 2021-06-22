@@ -1,7 +1,7 @@
 import React from 'react';
 // import { StatusBar } from 'expo-status-bar';
 import {
-  StyleSheet, View, Text, Image,
+  StyleSheet, View, Text, Image, TouchableOpacity,
 } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -34,11 +34,15 @@ type ListItemProps = {
   imageUrl:string | null,
   title:string,
   author: string,
+  onPress(): void
 }
 
-const ListItem = ({ imageUrl, title, author }:ListItemProps) => (
-  <View
+const ListItem = ({
+  imageUrl, title, author, onPress,
+}:ListItemProps) => (
+  <TouchableOpacity
     style={styles.itemContainer}
+    onPress={onPress}
   >
     <View
       style={styles.leftContainer}
@@ -63,6 +67,6 @@ const ListItem = ({ imageUrl, title, author }:ListItemProps) => (
       </Text>
       <Text style={styles.subText}>{author}</Text>
     </View>
-  </View>
+  </TouchableOpacity>
 );
 export default ListItem;
