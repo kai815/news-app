@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import { NEWS_API_KEY, BASE_URL } from '@env';
 import axios from 'axios';
+import { StackNavigationProp } from '@react-navigation/stack';
 import ListItem from '../components/ListItem';
 
 const styles = StyleSheet.create({
@@ -25,7 +26,15 @@ type Article = {
 
 const URL = `${BASE_URL}?country=jp&category=business&apiKey=${NEWS_API_KEY}`;
 
-const HomeScreen = () => {
+type RootStackParamList = {
+  Home: undefined;
+};
+
+type Props = {
+  navigation: StackNavigationProp<RootStackParamList, 'Home'>;
+};
+
+const HomeScreen = ({ navigation }:Props) => {
   const [articles, setArticles] = useState<Article[] | []>([]);
 
   const fetchArticles = async () => {
@@ -50,6 +59,7 @@ const HomeScreen = () => {
             imageUrl={item.urlToImage}
             title={item.title}
             author={item.author}
+            onPress={() => navigation.navigate('Article')}
           />
         )}
         keyExtractor={(_item, index) => index.toString()}
