@@ -59,7 +59,7 @@ const HomeScreen = ({ navigation }:Props) => {
             imageUrl={item.urlToImage}
             title={item.title}
             author={item.author}
-            onPress={() => navigation.navigate('Article')}
+            onPress={() => navigation.navigate('Article', { article: item })}
           />
         )}
         keyExtractor={(_item, index) => index.toString()}
