@@ -1,6 +1,9 @@
 import React from 'react';
 import { StyleSheet, SafeAreaView } from 'react-native';
 import { WebView } from 'react-native-webview';
+/* types */
+import { RouteProp } from '@react-navigation/native';
+import { RootStackParamList } from '../types/navigation';
 
 const styles = StyleSheet.create({
   container: {
@@ -9,7 +12,11 @@ const styles = StyleSheet.create({
   },
 });
 
-const ArticleScreen = ({ route }) => {
+type Props = {
+  route: RouteProp<RootStackParamList, 'Article'>;
+};
+
+const ArticleScreen = ({ route }:Props) => {
   const { article } = route.params;
   return (
     <SafeAreaView style={styles.container}>
